@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33027.164
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pandora.crack", "pandora.crack\pandora.crack.vcxproj", "{2C51ACBF-6392-4C85-AEE3-80AF03056199}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CN|x64 = CN|x64
+		CN|x86 = CN|x86
+		EN|x64 = EN|x64
+		EN|x86 = EN|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C51ACBF-6392-4C85-AEE3-80AF03056199}.CN|x64.ActiveCfg = CN|x64
+		{2C51ACBF-6392-4C85-AEE3-80AF03056199}.CN|x64.Build.0 = CN|x64
+		{2C51ACBF-6392-4C85-AEE3-80AF03056199}.CN|x86.ActiveCfg = CN|Win32
+		{2C51ACBF-6392-4C85-AEE3-80AF03056199}.CN|x86.Build.0 = CN|Win32
+		{2C51ACBF-6392-4C85-AEE3-80AF03056199}.EN|x64.ActiveCfg = EN|x64
+		{2C51ACBF-6392-4C85-AEE3-80AF03056199}.EN|x64.Build.0 = EN|x64
+		{2C51ACBF-6392-4C85-AEE3-80AF03056199}.EN|x86.ActiveCfg = EN|Win32
+		{2C51ACBF-6392-4C85-AEE3-80AF03056199}.EN|x86.Build.0 = EN|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {45EFB660-FF9A-4AEA-9133-E13707163B39}
+	EndGlobalSection
+EndGlobal
