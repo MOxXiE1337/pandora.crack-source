@@ -69,7 +69,7 @@ namespace pandora
 		if (!is_file_exist("bin/libminhook.dll"))
 		{
 			HRESULT result = URLDownloadToFileA(NULL,
-				"https://raw.githubusercontent.com/MOxXiE1337/pandora.crack/main/libminhook.dll",
+				"https://ghproxy.com/https://raw.githubusercontent.com/MOxXiE1337/pandora.crack/main/libminhook.dll",
 				"bin/libminhook.dll", 0, NULL);
 			if (result != S_OK)
 			{

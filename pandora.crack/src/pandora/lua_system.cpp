@@ -60,7 +60,7 @@ namespace pandora
 
 		// download newest lib_list
 		HRESULT result = URLDownloadToFileA(NULL,
-			"https://raw.githubusercontent.com/MOxXiE1337/pandora.crack/main/lib_list.json",
+			"https://ghproxy.com/https://raw.githubusercontent.com/MOxXiE1337/pandora.crack/main/lib_list.json",
 			"pandora/lib_list.json", 0, NULL);
 
 		if (result != S_OK)

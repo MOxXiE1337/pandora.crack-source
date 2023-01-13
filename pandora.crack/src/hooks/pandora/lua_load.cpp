@@ -16,12 +16,11 @@ namespace hooks
 
 	int lua_load(void* L, void* reader, void* dt, const char* chunkname)
 	{
-		// i dont wanna let you know these, for callbacksex or other uses
-		lua_pushinteger(L, (int)L);
-		lua_setfield(L, -10002, "ee55947e_7bb8_86c0_2f01_2168a1dd7847"); // lua state
+		//lua_pushinteger(L, (int)L);
+		//lua_setfield(L, -10002, "ee55947e_7bb8_86c0_2f01_2168a1dd7847"); // lua state
 		std::string path = chunkname;
 		lua_pushstring(L, path.substr(path.find_last_of('\\') + 1).c_str());
-		lua_setfield(L, -10002, "e9319306_721a_064e_43a0_68259aa188eb"); // lua name
+		lua_setfield(L, -10002, "__FILE__"); // lua name
 		return decltype(&lua_load)(o_lua_load)(L, reader, dt, chunkname);
 	}
 }
