@@ -1,6 +1,7 @@
 #include <sdk/sdk.h>
 #include <hooks/hooks.h>
 #include <pandora/pandora.h>
+#include <minhook/minhook.h>
 
 extern HMODULE g_loader_module;
 
@@ -45,14 +46,6 @@ __declspec(naked) void hooks_username2()
 	}
 }
 
-typedef unsigned int (WINAPI* MH_InitializeFn)();
-typedef unsigned int (WINAPI* MH_CreateHookFn)(LPVOID, LPVOID, LPVOID*);
-typedef unsigned int (WINAPI* MH_EnableHookFn)(LPVOID);
-
-MH_InitializeFn MH_Initialize = nullptr;
-MH_CreateHookFn MH_CreateHook = nullptr;
-MH_EnableHookFn MH_EnableHook = nullptr;
-
 bool is_file_exist(const char* file_name)
 {
 	struct stat buffer;
@@ -63,34 +56,6 @@ namespace pandora
 {
 	void setup_hooks()
 	{
-		void* surface = sdk::CreateInterface<void*>("vguimatsurface.dll", "VGUI_Surface");
-
-		// download minhook
-		if (!is_file_exist("bin/libminhook.dll"))
-		{
-			HRESULT result = URLDownloadToFileA(NULL,
-				"https://ghproxy.com/https://raw.githubusercontent.com/MOxXiE1337/pandora.crack/main/libminhook.dll",
-				"bin/libminhook.dll", 0, NULL);
-			if (result != S_OK)
-			{
-				CON_ERR("failed to download libminhook!\n");
-				goto QUIT;
-			}
-		}
-
-		// load minhook
-		HMODULE minhook = LoadLibraryA("bin/libminhook.dll");
-		if (minhook == INVALID_HANDLE_VALUE)
-		{
-			CON_ERR("failed to load libminhook!\n");
-			goto QUIT;
-		}
-
-		// load functions
-		MH_Initialize = (MH_InitializeFn)GetProcAddress(minhook, "MH_Initialize");
-		MH_CreateHook = (MH_CreateHookFn)GetProcAddress(minhook, "MH_CreateHook");
-		MH_EnableHook = (MH_EnableHookFn)GetProcAddress(minhook, "MH_EnableHook");
-
 		if (MH_Initialize())
 		{
 			CON_ERR("failed to init minhook!\n");
@@ -153,6 +118,7 @@ namespace pandora
 		}
 
 #ifdef CN_VERSION
+		void* surface = sdk::CreateInterface<void*>("vguimatsurface.dll", "VGUI_Surface");
 		hooks::surface.initialize((PDWORD*)surface);
 		hooks::surface.hook_function((DWORD)hooks::set_font_glyph_set, 72);
 		hooks::surface.hook_function((DWORD)hooks::draw_print_text, 28);

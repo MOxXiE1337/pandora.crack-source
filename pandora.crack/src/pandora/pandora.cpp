@@ -57,9 +57,11 @@ namespace pandora
 		CON_LOG("sinicizator initialized.\n");
 #endif // CN_VERSION
 
+		/*
 		CON_LOG("initializing lua system...\n");
 		setup_lua_system();
 		CON_LOG("lua system initialized.\n");
+		*/
 
 		CON_LOG("invoking oep...\n");
 		oep_fn(0x4103FFBF)((HMODULE)pdr_beg, DLL_PROCESS_ATTACH, 0);
@@ -68,11 +70,7 @@ namespace pandora
 		CON_LOG("all works done.\n");
 		CON_LOG("owned by PinkKing#8199 & NiceL#0001 ( https://discord.gg/GHKuYjZrdM )\n");
 	
-#ifdef CN_VERSION
-		CON_LOG("pandora.crack & zh-CN version by lex-1337#2220(MOxXiE)\n");
-#else
-		CON_LOG("pandora.crack by lex-1337#2220(MOxXiE)\n");
-#endif //CN_VERSION
+		CON_LOG("private cheat provider - delusive.cc\n");
 
 		return;
 	QUIT:

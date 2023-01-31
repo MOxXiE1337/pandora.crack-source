@@ -251,6 +251,7 @@
     <ClInclude Include="include\json\ejson.h" />
     <ClInclude Include="include\json\json-forwards.h" />
     <ClInclude Include="include\json\json.h" />
+    <ClInclude Include="include\minhook\minhook.h" />
     <ClInclude Include="include\pandora\pandora.h" />
     <ClInclude Include="include\sdk\interfaces\IAppSystem.h" />
     <ClInclude Include="include\sdk\interfaces\ICvar.h" />
@@ -289,6 +290,9 @@
     <ClCompile Include="src\pandora\sinicizator.cpp" />
     <ClCompile Include="src\utils\memory.cpp" />
     <ClCompile Include="src\utils\vmthook.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\min_hook.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
