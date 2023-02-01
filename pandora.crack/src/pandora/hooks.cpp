@@ -10,22 +10,6 @@ namespace hooks
 	utils::vmthook surface;
 }
 
-__declspec(naked) void hooks_rebase_interface()
-{
-	__asm
-	{
-		pushad;
-		push ebp;
-		push eax;
-		call hooks::fix_interface;
-		pop ebp;
-		mov [ebp - 0x40], eax;
-		popad;
-		push hooks::o_rebase_interface;
-		ret;
-	}
-}
-
 __declspec(naked) void hooks_username1()
 {
 	__asm
@@ -91,9 +75,9 @@ namespace pandora
 			CON_ERR("failed to hook get_address_from_server!\n");
 			goto QUIT;
 		}
-		if (MH_CreateHook((void*)0x410335EB, hooks_rebase_interface, &hooks::o_rebase_interface))
+		if (MH_CreateHook((void*)0x41033430, hooks::get_interface, &hooks::o_get_interface))
 		{
-			CON_ERR("failed to hook rebase_interface!\n");
+			CON_ERR("failed to hook get_interface!\n");
 			goto QUIT;
 		}
 		if (MH_CreateHook((void*)0x40DC8D70, hooks_username1, &hooks::o_username1))

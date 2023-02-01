@@ -22,8 +22,8 @@ namespace hooks
 	extern void* o_get_address_from_server;
 	void* __cdecl get_address_from_server(int hash);
 
-	extern void* o_rebase_interface;
-	void* __stdcall fix_interface(void* address);
+	extern void* o_get_interface;
+	void* __cdecl get_interface(int hash);
 
 	extern void* o_username1;
 	char fix_username1();

@@ -7,7 +7,7 @@ namespace hooks
 	char fix_username1()
 	{
 		static size_t i = 0;
-		static const char* name = "PinkKing   ";
+		static const char* name = "delusive.cc";
 		char character = name[i];
 		i++;
 		if (i >= strlen(name))

@@ -35,7 +35,7 @@ namespace pandora
 	};
 
 	extern std::unordered_map<int, server_address_info_t> server_addresses;
-	extern std::unordered_map<void*, interface_info_t> interface_addresses;
+	extern std::unordered_map<int, interface_info_t> interface_addresses;
 	
 	LONG NTAPI crash_handler(struct _EXCEPTION_POINTERS* exception_info);
 

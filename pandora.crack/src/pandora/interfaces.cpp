@@ -1,39 +1,39 @@
 #include <sdk/sdk.h>
 #include <pandora/pandora.h>
 
-#define INTERFACE_INFO(address) interface_addresses[(void*)address]
+#define INTERFACE_INFO(hash) interface_addresses[hash]
 
 namespace pandora
 {
-	std::unordered_map<void*, interface_info_t> interface_addresses;
+	std::unordered_map<int, interface_info_t> interface_addresses;
 
 	void setup_interfaces()
 	{
-		INTERFACE_INFO(0x61cf08c4) = { "vgui2", "VGUI_Panel009" };
-		INTERFACE_INFO(0x628847d0) = { "vguimatsurface", "VGUI_Surface031" };
-		INTERFACE_INFO(0x2e6b7b18) = { "client", "VClient018" };
-		INTERFACE_INFO(0x5416d0f8) = { "engine", "VEngineVGui001" };
-		INTERFACE_INFO(0x2e6dce74) = { "client", "VClientEntityList003" };
-		INTERFACE_INFO(0x2eb17ed0) = { "client", "GameMovement001" };
-		INTERFACE_INFO(0x2eb1ade8) = { "client", "VClientPrediction001" };
-		INTERFACE_INFO(0x50e1d3e0) = { "engine", "VEngineClient014" };
-		INTERFACE_INFO(0x714ad310) = { "vstdlib", "VEngineCvar007" };
-		INTERFACE_INFO(0x5109c4c8) = { "engine", "GAMEEVENTSMANAGER002" };
-		INTERFACE_INFO(0x51004720) = { "engine", "VEngineModel016" };
-		INTERFACE_INFO(0x62aa2ac8) = { "materialsystem", "VMaterialSystem080" };
-		INTERFACE_INFO(0x70ff6078) = { "vphysics", "VPhysicsSurfaceProps001" };
-		INTERFACE_INFO(0x50e273fc) = { "engine", "EngineTraceClient004" };
-		INTERFACE_INFO(0x50E2D558) = { "engine", "VModelInfoClient004" };
-		INTERFACE_INFO(0x50e1fea8) = { "engine", "VDebugOverlay004" };
-		INTERFACE_INFO(0x50dae654) = { "engine", "IEngineSoundClient003" };
-		INTERFACE_INFO(0x62788a70) = { "localize", "Localize_001" };
-		INTERFACE_INFO(0x5567fe98) = { "studiorender", "VStudioRender026" };
-		INTERFACE_INFO(0x50e21d0c) = { "engine", "VEngineRenderView014" };
-		INTERFACE_INFO(0x50e2ee88) = { "engine", "VEngineClientStringTable001" };
-		INTERFACE_INFO(0x2e6ecfc0) = { "client", "ClientLeafSystem002" };
-		INTERFACE_INFO(0x69f64f18) = { "datacache", "MDLCache004" };
-		INTERFACE_INFO(0x71065388) = { "inputsystem", "InputSystemVersion001" };
-		INTERFACE_INFO(0x70feaa5c) = { "vphysics", "VPhysicsCollision007" };
-		INTERFACE_INFO(0x50e21cec) = { "engine", "VEngineEffects001" };
+		INTERFACE_INFO(0x5fde146) = { "vgui2", "VGUI_Panel009" };
+		INTERFACE_INFO(0xd3fdab8b) = { "vguimatsurface", "VGUI_Surface031" };
+		INTERFACE_INFO(0xc6842ceb) = { "client", "VClient018" };
+		INTERFACE_INFO(0xd59e08bc) = { "engine", "VEngineVGui001" };
+		INTERFACE_INFO(0xda84c74e) = { "client", "VClientEntityList003" };
+		INTERFACE_INFO(0xa86465d3) = { "client", "GameMovement001" };
+		INTERFACE_INFO(0x8c52abfc) = { "client", "VClientPrediction001" };
+		INTERFACE_INFO(0xd930954) = { "engine", "VEngineClient014" };
+		INTERFACE_INFO(0x32336da5) = { "vstdlib", "VEngineCvar007" };
+		INTERFACE_INFO(0xb3bbb7a0) = { "engine", "GAMEEVENTSMANAGER002" };
+		INTERFACE_INFO(0x94b38f98) = { "engine", "VEngineModel016" };
+		INTERFACE_INFO(0x49968254) = { "materialsystem", "VMaterialSystem080" };
+		INTERFACE_INFO(0xf4a1bfde) = { "vphysics", "VPhysicsSurfaceProps001" };
+		INTERFACE_INFO(0x192d1404) = { "engine", "EngineTraceClient004" };
+		INTERFACE_INFO(0x5ab298d2) = { "engine", "VModelInfoClient004" };
+		INTERFACE_INFO(0x9b334bcf) = { "engine", "VDebugOverlay004" };
+		INTERFACE_INFO(0xa29f0b66) = { "engine", "IEngineSoundClient003" };
+		INTERFACE_INFO(0x24b3ba6c) = { "localize", "Localize_001" };
+		INTERFACE_INFO(0xa1aeab7c) = { "studiorender", "VStudioRender026" };
+		INTERFACE_INFO(0xcaf0b530) = { "engine", "VEngineRenderView014" };
+		INTERFACE_INFO(0x9d6d78f) = { "engine", "VEngineClientStringTable001" };
+		INTERFACE_INFO(0xe533) = { "client", "ClientLeafSystem002" };
+		INTERFACE_INFO(0x9618a291) = { "datacache", "MDLCache004" };
+		INTERFACE_INFO(0x4d31455f) = { "inputsystem", "InputSystemVersion001" };
+		INTERFACE_INFO(0x24ea670b) = { "vphysics", "VPhysicsCollision007" };
+		INTERFACE_INFO(0x5c33c149) = { "engine", "VEngineEffects001" };
 	}
 }

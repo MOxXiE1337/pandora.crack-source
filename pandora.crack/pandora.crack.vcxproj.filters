@@ -107,7 +107,7 @@
     <ClCompile Include="src\hooks\pandora\get_address_from_server.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\hooks\pandora\fix_interface.cpp">
+    <ClCompile Include="src\hooks\pandora\get_interface.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\hooks\pandora\sh_open_folder_and_select_items.cpp">

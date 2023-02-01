@@ -267,7 +267,7 @@
     <ClCompile Include="include\sdk\misc\Color.cpp" />
     <ClCompile Include="src\hooks\pandora\connect.cpp" />
     <ClCompile Include="src\hooks\pandora\find_pattern.cpp" />
-    <ClCompile Include="src\hooks\pandora\fix_interface.cpp" />
+    <ClCompile Include="src\hooks\pandora\get_interface.cpp" />
     <ClCompile Include="src\hooks\pandora\fix_username1.cpp" />
     <ClCompile Include="src\hooks\pandora\fix_username2.cpp" />
     <ClCompile Include="src\hooks\pandora\get_address_from_server.cpp" />
