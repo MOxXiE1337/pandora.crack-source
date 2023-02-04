@@ -31,13 +31,7 @@ namespace hooks
 	HRESULT __stdcall sh_open_folder_and_select_items(LPCITEMIDLIST arg0, UINT arg1, LPCITEMIDLIST* arg2, DWORD arg3)
 	{
 		static CHAR exe_path[MAX_PATH];
-		void* ret_addr;
-
-		__asm
-		{
-			mov eax, [ebp + 4];
-			mov ret_addr, eax;
-		}
+		void* ret_addr = _ReturnAddress();
 
 		GetModuleFileNameA(NULL, exe_path, MAX_PATH);
 		std::string path(exe_path);

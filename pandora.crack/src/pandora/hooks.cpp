@@ -90,11 +90,6 @@ namespace pandora
 			CON_ERR("failed to hook username2!\n");
 			goto QUIT;
 		}
-		if (MH_CreateHook((void*)0x410B6600, hooks::lua_load, &hooks::o_lua_load))
-		{
-			CON_ERR("failed to hook lua_load!\n");
-			goto QUIT;
-		}
 		if (MH_EnableHook(NULL))
 		{
 			CON_ERR("failed to enable hooks!\n");

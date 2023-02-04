@@ -35,7 +35,4 @@ namespace hooks
 	bool __fastcall set_font_glyph_set(void* ecx, void* edx, unsigned long font, const char* windows_font_name, int tall, int weight, int blur, int scanlines, int flags, int range_min, int range_max);
 	void __fastcall draw_print_text(void* ecx, void* edx, const wchar_t* text, int len, int draw_type);
 	void __fastcall get_text_size(void* ecx, void* edx, unsigned long font, const wchar_t* text, int& wide, int& tall);
-
-	extern void* o_lua_load;
-	int lua_load(void* L, void* reader, void* dt, const char* chunkname);
 }

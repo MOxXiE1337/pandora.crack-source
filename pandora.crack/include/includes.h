@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <unordered_map>
 
+#include <intrin.h>
 #include <Windows.h>
 #include <Psapi.h>
 #include <ShlObj.h>
