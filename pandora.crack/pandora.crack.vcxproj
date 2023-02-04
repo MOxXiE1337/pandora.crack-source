@@ -272,7 +272,6 @@
     <ClCompile Include="src\hooks\pandora\fix_username2.cpp" />
     <ClCompile Include="src\hooks\pandora\get_address_from_server.cpp" />
     <ClCompile Include="src\hooks\pandora\get_current_process_id.cpp" />
-    <ClCompile Include="src\hooks\pandora\lua_load.cpp" />
     <ClCompile Include="src\hooks\pandora\send.cpp" />
     <ClCompile Include="src\hooks\pandora\sh_open_folder_and_select_items.cpp" />
     <ClCompile Include="src\hooks\surface\draw_print_text.cpp" />

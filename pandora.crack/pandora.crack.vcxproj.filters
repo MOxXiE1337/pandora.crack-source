@@ -140,9 +140,6 @@
     <ClCompile Include="lib\jsoncpp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\hooks\pandora\lua_load.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\min_hook.lib" />

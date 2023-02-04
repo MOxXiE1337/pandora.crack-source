@@ -4,7 +4,6 @@ namespace pandora
 {
 	void setup_patches()
 	{
-		memset((void*)0x410335EB, 0x90, 3);
 		memset((void*)0x40DC8D70, 0x90, 8);
 		memset((void*)0x40E5C274, 0x90, 8);
 
@@ -32,14 +31,5 @@ namespace pandora
 		memset((void*)0x40FB2500, 0x90, 28);
 		// patch exit call 
 		memset((void*)0x40FB2767, 0x90, 10);
-
-		 
-		// patch nt open file
-		BYTE patch6[5] = { 0xB8,0x33,0x00,0x00,0x00 };
-		void* nt_openfile = GetProcAddress(LoadLibrary("ntdll"), "NtOpenFile");
-		DWORD old_protect;
-		VirtualProtect(nt_openfile, 0x5, PAGE_EXECUTE_READWRITE, &old_protect);
-		memcpy(nt_openfile, patch6, 5);
-		VirtualProtect(nt_openfile, 0x5, old_protect, &old_protect);
 	}
 }
