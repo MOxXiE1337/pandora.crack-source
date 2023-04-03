@@ -1,29 +1,21 @@
-#include <sdk/sdk.h>
 #include <hooks/hooks.h>
 #include <pandora/pandora.h>
 
-SOCKET g_pdr_socket;
+SOCKET g_hPandoraSocket;
+decltype(&::connect) g_pOriginalConnect;
 
-namespace hooks
+namespace Hooks
 {
-	decltype(&::connect) o_connect;
-
-	int __stdcall connect(SOCKET s, const sockaddr* addr, int len)
+	int __stdcall connect(SOCKET socket, const sockaddr* address, int length)
 	{
-		void* ret_addr;
+		PVOID pReturnAddress = _ReturnAddress();
 
-		__asm
+		if (pReturnAddress >= Pandora::ImageBase() && pReturnAddress < Pandora::ImageBase(0x74C000))
 		{
-			mov eax, [ebp + 4];
-			mov ret_addr, eax;
-		}
-
-		if (ret_addr >= (void*)0x40B50000 && ret_addr < (void*)0x4129C000)
-		{
-			g_pdr_socket = s;
+			g_hPandoraSocket = socket;
 			return true;
 		}
 
-		return o_connect(s, addr, len);
+		return g_pOriginalConnect(socket, address, length);
 	}
 }

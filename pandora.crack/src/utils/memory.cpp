@@ -1,48 +1,48 @@
 #include <utils/memory.h>
 
-namespace utils
+namespace Utils
 {
-	void* find_pattern(void* addr, size_t size, const std::string& pattern)
+	PVOID ScanSignature(PVOID pStartAddress, SIZE_T nSize, CONST STD_STRING& strSignature)
 	{
-		BYTE* scan_start, * scan_end; 
-		std::stringstream stream{ pattern };
-		std::string c;
-		std::vector<std::pair<BYTE, bool>> signature;
+		PBYTE pScanStart, pScanEnd;
+		STD_STRINGSTREAM stream{ strSignature };
+		STD_STRING c;
+		STD_VECTOR<STD_PAIR<BYTE, BOOL>> signature;
 
-		if (!addr || !size || pattern.empty())
-			return nullptr;
+		if (!pStartAddress || !nSize || strSignature.empty())
+			return NULL;
 
 		while (stream >> c)
 		{
 			if (c[0] == '?')
-				signature.push_back({ 0,true });
-			else if (std::isxdigit(c[0]) && std::isxdigit(c[1]))
-				signature.push_back({ (BYTE)std::strtoul(c.c_str(), 0, 16), false });
+				signature.push_back({ 0,TRUE });
+			else if (isxdigit(c[0]) && isxdigit(c[1]))
+				signature.push_back({ (BYTE)strtoul(c.c_str(), 0, 16), FALSE });
 		}
 		
-		scan_start = (BYTE*)addr;
-		scan_end = scan_start + size;
+		pScanStart = (PBYTE)pStartAddress;
+		pScanEnd = pScanStart + nSize;
 
-		BYTE* result = std::search(scan_start, scan_end, signature.begin(), signature.end(),
-			[](const BYTE b, const std::pair<BYTE, bool>& p) {
+		PBYTE result = std::search(pScanStart, pScanEnd, signature.begin(), signature.end(),
+			[](CONST BYTE b, CONST STD_PAIR<BYTE, BOOL>& p) {
 				return b == p.first || p.second;
 			});
 
-		if (result == scan_end)
-			return nullptr;
+		if (result == pScanEnd)
+			return NULL;
 
 		return result;
 	}
 
-	void* find_pattern(HMODULE module, const std::string& pattern)
+	PVOID ScanSignature(HMODULE hModule, CONST STD_STRING& strSignature)
 	{
 		MODULEINFO module_info;
-		GetModuleInformation(GetCurrentProcess(), module, &module_info, sizeof(MODULEINFO));
-		return find_pattern(module_info.lpBaseOfDll, module_info.SizeOfImage, pattern);
+		GetModuleInformation(GetCurrentProcess(), hModule, &module_info, sizeof(MODULEINFO));
+		return ScanSignature(module_info.lpBaseOfDll, module_info.SizeOfImage, strSignature);
 	}
 
-	void* find_pattern(const std::string& module_name, const std::string& pattern)
+	PVOID ScanSignature(CONST STD_STRING& strModuleName, CONST STD_STRING& strSignature)
 	{
-		return find_pattern(GetModuleHandle(module_name.c_str()), pattern);
+		return ScanSignature(GetModuleHandleA(strModuleName.c_str()), strSignature);
 	}
 }

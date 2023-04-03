@@ -2,8 +2,6 @@
 
 #include <pandora/pandora.h>
 
-HMODULE g_loader_module = nullptr;
-
 BOOL WINAPI DllMain(
     HINSTANCE hinstDLL,  
     DWORD fdwReason,         
@@ -12,12 +10,13 @@ BOOL WINAPI DllMain(
     switch (fdwReason)
     {
     case DLL_PROCESS_ATTACH:
-        AddVectoredExceptionHandler(0, pandora::crash_handler);
-        g_loader_module = hinstDLL;
+        AddVectoredExceptionHandler(0, Pandora::CrashHandler);
+        Pandora::LoaderModule() = hinstDLL;
         DisableThreadLibraryCalls(hinstDLL);
-        HANDLE thread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)pandora::init, 0, 0, 0);
-        if (thread)
-            CloseHandle(thread);
+        HANDLE hThread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)Pandora::Init, 0, 0, 0);
+        if (hThread)
+            CloseHandle(hThread);
         break;
     }
-    return TRUE; }
+    return TRUE; 
+}

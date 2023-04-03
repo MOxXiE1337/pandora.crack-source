@@ -21,37 +21,10 @@
     <ClInclude Include="include\includes.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="include\sdk\sdk.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\sdk\misc\interface.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\sdk\interfaces\IAppSystem.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\sdk\interfaces\ICvar.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\sdk\misc\Color.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="include\pandora\pandora.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="include\hooks\hooks.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\utils\vmthook.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\json\json.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\json\json-forwards.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\json\ejson.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="include\minhook\minhook.h">
@@ -60,9 +33,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\utils\memory.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="include\sdk\misc\Color.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\dllmain.cpp">
@@ -92,40 +62,13 @@
     <ClCompile Include="src\hooks\pandora\get_current_process_id.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\hooks\pandora\fix_username1.cpp">
+    <ClCompile Include="src\hooks\pandora\scan_signature.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\hooks\pandora\fix_username2.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\hooks\pandora\find_pattern.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\pandora\sigs.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\hooks\pandora\get_address_from_server.cpp">
+    <ClCompile Include="src\pandora\signatures.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\hooks\pandora\get_interface.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\hooks\pandora\sh_open_folder_and_select_items.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utils\vmthook.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\hooks\surface\set_font_glyph_set.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\pandora\sinicizator.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\hooks\surface\draw_print_text.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\hooks\surface\get_text_size.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\pandora\interfaces.cpp">
@@ -134,14 +77,17 @@
     <ClCompile Include="src\pandora\crash_handler.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\pandora\lua_system.cpp">
+    <ClCompile Include="src\pandora\relocations.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="lib\jsoncpp.cpp">
+    <ClCompile Include="src\hooks\pandora\get_address_from_server.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hooks\pandora\replace_user_name.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="lib\min_hook.lib" />
+    <Library Include="min_hook.lib" />
   </ItemGroup>
 </Project>

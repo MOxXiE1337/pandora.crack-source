@@ -1,111 +1,68 @@
-#include <sdk/sdk.h>
 #include <hooks/hooks.h>
 #include <pandora/pandora.h>
 #include <minhook/minhook.h>
 
-extern HMODULE g_loader_module;
+extern decltype(&::connect) g_pOriginalConnect;
+extern decltype(&::send) g_pOriginalSend;
 
-namespace hooks
+namespace Pandora
 {
-	utils::vmthook surface;
-}
-
-__declspec(naked) void hooks_username1()
-{
-	__asm
-	{
-		call hooks::fix_username1;
-		push hooks::o_username1;
-		ret;
-	}
-}
-
-__declspec(naked) void hooks_username2()
-{
-	__asm
-	{
-		call hooks::fix_username2;
-		push hooks::o_username2;
-		ret;
-	}
-}
-
-bool is_file_exist(const char* file_name)
-{
-	struct stat buffer;
-	return (stat(file_name, &buffer) == 0);
-}
-
-namespace pandora
-{
-	void setup_hooks()
+	void SetupHooks()
 	{
 		if (MH_Initialize())
 		{
-			CON_ERR("failed to init minhook!\n");
+			MessageBox(HWnd(), TEXT("FAILED TO INITIALIZE MINHOOK!"), TEXT(__FUNCTION__), MB_ICONERROR);
 			goto QUIT;
 		}
-		if (MH_CreateHook(&connect, hooks::connect, (void**)&hooks::o_connect))
+		if (MH_CreateHook(&connect, Hooks::connect, (PVOID*)&g_pOriginalConnect))
 		{
-			CON_ERR("failed to hook connect!\n");
+			MessageBox(HWnd(), TEXT("FAILED TO HOOK wsock32@@connect!"), TEXT(__FUNCTION__), MB_ICONERROR);
 			goto QUIT;
 		}
-		if (MH_CreateHook(&send, hooks::send, (void**)&hooks::o_send))
+		if (MH_CreateHook(&send, Hooks::send, (PVOID*)&g_pOriginalSend))
 		{
-			CON_ERR("failed to hook send!\n");
+			MessageBox(HWnd(), TEXT("FAILED TO HOOK wsock32@@send!"), TEXT(__FUNCTION__), MB_ICONERROR);
 			goto QUIT;
 		}
-		if (MH_CreateHook(&GetCurrentProcessId, hooks::get_current_process_id, (void**)&hooks::o_get_current_process_id))
+		if (MH_CreateHook(&GetCurrentProcessId, Hooks::GetCurrentProcessId, NULL))
 		{
-			CON_ERR("failed to hook get_current_process_id\n");
+			MessageBox(HWnd(), TEXT("FAILED TO HOOK kernel32@@GetCurrentProcessId!"), TEXT(__FUNCTION__), MB_ICONERROR);
 			goto QUIT;
 		}
+		/*
 		if (MH_CreateHook(&SHOpenFolderAndSelectItems, hooks::sh_open_folder_and_select_items, (void**)&hooks::o_sh_open_folder_and_select_items))
 		{
 			CON_ERR("failed to hook sh_open_folder_and_select_items\n");
 			goto QUIT;
-		}
-		if (MH_CreateHook((void*)0x4100B990, hooks::find_pattern, &hooks::o_find_pattern))
+		}*/
+		if (MH_CreateHook(ImageBase(0x4BB990), Hooks::ScanSignature, NULL))
 		{
-			CON_ERR("failed to hook find_pattern!\n");
+			MessageBox(HWnd(), TEXT("FAILED TO HOOK pandora@@ScanSignature!"), TEXT(__FUNCTION__), MB_ICONERROR);
 			goto QUIT;
 		}
-		if (MH_CreateHook((void*)0x40DE8EC0, hooks::get_address_from_server, &hooks::o_get_address_from_server))
+		if (MH_CreateHook(ImageBase(0x298EC0), Hooks::GetAddressFromServer, NULL))
 		{
-			CON_ERR("failed to hook get_address_from_server!\n");
+			MessageBox(HWnd(), TEXT("FAILED TO HOOK pandora@@GetAddressFromServer!"), TEXT(__FUNCTION__), MB_ICONERROR);
 			goto QUIT;
 		}
-		if (MH_CreateHook((void*)0x41033430, hooks::get_interface, &hooks::o_get_interface))
+		if (MH_CreateHook(ImageBase(0x4E3430), Hooks::GetInterface, NULL))
 		{
-			CON_ERR("failed to hook get_interface!\n");
+			MessageBox(HWnd(), TEXT("FAILED TO HOOK pandora@@GetInterface!"), TEXT(__FUNCTION__), MB_ICONERROR);
 			goto QUIT;
 		}
-		if (MH_CreateHook((void*)0x40DC8D70, hooks_username1, &hooks::o_username1))
+		if (MH_CreateHook(ImageBase(0x555A0), Hooks::ReplaceUserName, NULL))
 		{
-			CON_ERR("failed to hook username1!\n");
-			goto QUIT;
-		}
-		if (MH_CreateHook((void*)0x40E5C274, hooks_username2, &hooks::o_username2))
-		{
-			CON_ERR("failed to hook username2!\n");
+			MessageBox(HWnd(), TEXT("FAILED TO HOOK pandora@@ReplaceUserName!"), TEXT(__FUNCTION__), MB_ICONERROR);
 			goto QUIT;
 		}
 		if (MH_EnableHook(NULL))
 		{
-			CON_ERR("failed to enable hooks!\n");
+			MessageBox(HWnd(), TEXT("FAILED TO ENABLE HOOKS"), TEXT(__FUNCTION__), MB_ICONERROR);
 			goto QUIT;
 		}
 
-#ifdef CN_VERSION
-		void* surface = sdk::CreateInterface<void*>("vguimatsurface.dll", "VGUI_Surface");
-		hooks::surface.initialize((PDWORD*)surface);
-		hooks::surface.hook_function((DWORD)hooks::set_font_glyph_set, 72);
-		hooks::surface.hook_function((DWORD)hooks::draw_print_text, 28);
-		hooks::surface.hook_function((DWORD)hooks::get_text_size, 79);
-#endif // CN_VERSION
-
 		return;
 	QUIT:
-		FreeLibraryAndExitThread(g_loader_module, 0);
+		FreeLibraryAndExitThread(LoaderModule(), 0);
 	}
 }

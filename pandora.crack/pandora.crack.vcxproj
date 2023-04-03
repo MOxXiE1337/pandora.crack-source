@@ -79,6 +79,7 @@
     <PlatformToolset>v142</PlatformToolset>
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='CN|x64'">
     <PlatformToolset>v142</PlatformToolset>
@@ -86,6 +87,7 @@
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='CN|Win32'">
     <PlatformToolset>v142</PlatformToolset>
     <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -248,50 +250,32 @@
   <ItemGroup>
     <ClInclude Include="include\hooks\hooks.h" />
     <ClInclude Include="include\includes.h" />
-    <ClInclude Include="include\json\ejson.h" />
-    <ClInclude Include="include\json\json-forwards.h" />
-    <ClInclude Include="include\json\json.h" />
     <ClInclude Include="include\minhook\minhook.h" />
     <ClInclude Include="include\pandora\pandora.h" />
-    <ClInclude Include="include\sdk\interfaces\IAppSystem.h" />
-    <ClInclude Include="include\sdk\interfaces\ICvar.h" />
-    <ClInclude Include="include\sdk\misc\Color.h" />
-    <ClInclude Include="include\sdk\misc\interface.h" />
-    <ClInclude Include="include\sdk\sdk.h" />
     <ClInclude Include="include\utils\memory.h" />
-    <ClInclude Include="include\utils\vmthook.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lib\jsoncpp.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
-    <ClCompile Include="include\sdk\misc\Color.cpp" />
     <ClCompile Include="src\hooks\pandora\connect.cpp" />
-    <ClCompile Include="src\hooks\pandora\find_pattern.cpp" />
-    <ClCompile Include="src\hooks\pandora\get_interface.cpp" />
-    <ClCompile Include="src\hooks\pandora\fix_username1.cpp" />
-    <ClCompile Include="src\hooks\pandora\fix_username2.cpp" />
     <ClCompile Include="src\hooks\pandora\get_address_from_server.cpp" />
+    <ClCompile Include="src\hooks\pandora\scan_signature.cpp" />
+    <ClCompile Include="src\hooks\pandora\get_interface.cpp" />
     <ClCompile Include="src\hooks\pandora\get_current_process_id.cpp" />
     <ClCompile Include="src\hooks\pandora\send.cpp" />
-    <ClCompile Include="src\hooks\pandora\sh_open_folder_and_select_items.cpp" />
-    <ClCompile Include="src\hooks\surface\draw_print_text.cpp" />
-    <ClCompile Include="src\hooks\surface\get_text_size.cpp" />
-    <ClCompile Include="src\hooks\surface\set_font_glyph_set.cpp" />
+    <ClCompile Include="src\hooks\pandora\replace_user_name.cpp" />
     <ClCompile Include="src\pandora\crash_handler.cpp" />
     <ClCompile Include="src\pandora\hooks.cpp" />
     <ClCompile Include="src\pandora\imports.cpp" />
     <ClCompile Include="src\pandora\interfaces.cpp" />
-    <ClCompile Include="src\pandora\lua_system.cpp" />
     <ClCompile Include="src\pandora\pandora.cpp" />
     <ClCompile Include="src\pandora\patches.cpp" />
+    <ClCompile Include="src\pandora\relocations.cpp" />
     <ClCompile Include="src\pandora\segment.cpp" />
-    <ClCompile Include="src\pandora\sigs.cpp" />
-    <ClCompile Include="src\pandora\sinicizator.cpp" />
+    <ClCompile Include="src\pandora\signatures.cpp" />
     <ClCompile Include="src\utils\memory.cpp" />
-    <ClCompile Include="src\utils\vmthook.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="lib\min_hook.lib" />
+    <Library Include="min_hook.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

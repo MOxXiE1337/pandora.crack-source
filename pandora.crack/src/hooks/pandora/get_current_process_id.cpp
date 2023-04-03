@@ -1,10 +1,8 @@
 #include <hooks/hooks.h>
 
-namespace hooks
+namespace Hooks
 {
-	decltype(&GetCurrentProcessId) o_get_current_process_id;
-
-	DWORD __stdcall get_current_process_id()
+	DWORD WINAPI GetCurrentProcessId()
 	{
 		return 3936;
 	}

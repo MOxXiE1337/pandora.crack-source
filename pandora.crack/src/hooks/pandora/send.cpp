@@ -1,18 +1,17 @@
 #include <hooks/hooks.h>
 
-extern SOCKET g_pdr_socket;
+extern SOCKET g_hPandoraSocket;
+decltype(&::send) g_pOriginalSend;
 
-namespace hooks
+namespace Hooks
 {
-	decltype(&::send) o_send;
-
-	int __stdcall send(SOCKET s, const char* buf, int len, int flags)
+	int __stdcall send(SOCKET socket, const char* buffer, int length, int flags)
 	{
-		if (s == g_pdr_socket)
+		if (socket == g_hPandoraSocket)
 		{
-			return len;
+			return length;
 		}
 
-		return o_send(s, buf, len, flags);
+		return g_pOriginalSend(socket, buffer, length, flags);
 	}
 }

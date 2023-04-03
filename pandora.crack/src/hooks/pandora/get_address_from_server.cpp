@@ -1,22 +1,23 @@
-#include <sdk/sdk.h>
 #include <hooks/hooks.h>
 #include <utils/memory.h>
 #include <pandora/pandora.h>
 
-namespace hooks
+namespace Hooks
 {
-	void* o_get_address_from_server;
-
-	void* __cdecl get_address_from_server(int hash)
+	PVOID CDECL GetAddressFromServer(ULONG nHash)
 	{
-		const auto& server_address_info = pandora::server_addresses[hash];
-		void* fixed_address = utils::find_pattern(server_address_info.module_name, server_address_info.sig);
+		CONST STD_STRING& strAddressInfo = Pandora::Signatures()[nHash];
+		STD_STRING strModuleName = strAddressInfo.substr(0, strAddressInfo.find(" => "));
+		STD_STRING strSignature = strAddressInfo.substr(strAddressInfo.find("[") + 1, strAddressInfo.find("]"));
 
-		if (fixed_address == nullptr)
+		PVOID pFixedAddress = Utils::ScanSignature(strModuleName, strSignature);
+
+		if (!pFixedAddress)
 		{
-			CON_ERR("failed to fix server address (hash:%X)\n", hash);
-			return nullptr;
+			MessageBox(Pandora::HWnd(), TEXT("FAILED TO FIX ONLINE SIGNATURE!"), TEXT(__FUNCTION__), MB_ICONERROR);
+			exit(0);
 		}
-		return fixed_address;
+
+		return pFixedAddress;
 	}
 }

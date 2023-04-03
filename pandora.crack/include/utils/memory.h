@@ -1,9 +1,9 @@
 #pragma once
 #include <includes.h>
 
-namespace utils
+namespace Utils
 {
-	void* find_pattern(void* addr, size_t size, const std::string& pattern);
-	void* find_pattern(HMODULE module, const std::string& pattern);
-	void* find_pattern(const std::string& module_name, const std::string& pattern);
+	PVOID ScanSignature(PVOID pStartAddress, SIZE_T nSize, CONST STD_STRING& strSignature);
+	PVOID ScanSignature(HMODULE hModule, CONST STD_STRING& strSignature);
+	PVOID ScanSignature(CONST STD_STRING& strModuleName, CONST STD_STRING& strSignature);
 }

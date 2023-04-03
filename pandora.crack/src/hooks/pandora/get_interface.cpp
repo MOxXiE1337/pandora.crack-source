@@ -1,24 +1,35 @@
-#include <sdk/sdk.h>
 #include <hooks/hooks.h>
-#include <utils/memory.h>
 #include <pandora/pandora.h>
 
-namespace hooks
+PVOID CreateInterface(CONST STD_STRING& strModuleName, CONST STD_STRING& strInterfaceName)
 {
-	void* o_get_interface;
+	typedef PVOID(*CreateInterfaceFn)(CONST CHAR* pInterfaceName, PINT pRetVal);
+	
+	INT nTempVal = 0;
+	HMODULE hModule = LoadLibraryA(strModuleName.c_str());
+	CreateInterfaceFn CreateInterfaceProc = (CreateInterfaceFn)GetProcAddress(hModule, "CreateInterface");
 
-	void* __cdecl get_interface(int hash)
+	return CreateInterfaceProc(strInterfaceName.c_str(), &nTempVal);
+}
+
+namespace Hooks
+{
+	PVOID CDECL GetInterface(ULONG nHash)
 	{
-		const auto& interface_info = pandora::interface_addresses[hash];
-		void* fixed_address = sdk::CreateInterface<void*>(interface_info.module_name, interface_info.name, true);
+		CONST STD_STRING& strInterface = Pandora::Interfaces()[nHash];
+		SIZE_T nPos = strInterface.find("@@");
 
-		if (fixed_address == nullptr)
+		STD_STRING strModuleName = strInterface.substr(0, nPos);
+		STD_STRING strIntefaceName = strInterface.substr(nPos + 2, -1);
+
+		PVOID pFixedAddress = CreateInterface(strModuleName, strIntefaceName);
+
+		if (!pFixedAddress)
 		{
-			CON_ERR("failed to fix interface %s\n", interface_info.name);
-			Sleep(300);
+			MessageBox(Pandora::HWnd(), TEXT("FAILED TO FIX INTERFACE!"), TEXT(__FUNCTION__), MB_ICONERROR);
 			exit(0);
 		}
 
-		return fixed_address;
+		return pFixedAddress;
 	}
 }
