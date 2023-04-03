@@ -17,10 +17,10 @@ namespace Hooks
 	PVOID CDECL GetInterface(ULONG nHash)
 	{
 		CONST STD_STRING& strInterface = Pandora::Interfaces()[nHash];
-		SIZE_T nPos = strInterface.find("@@");
+		SIZE_T nPos = strInterface.find(".");
 
 		STD_STRING strModuleName = strInterface.substr(0, nPos);
-		STD_STRING strIntefaceName = strInterface.substr(nPos + 2, -1);
+		STD_STRING strIntefaceName = strInterface.substr(nPos + 1, -1);
 
 		PVOID pFixedAddress = CreateInterface(strModuleName, strIntefaceName);
 
