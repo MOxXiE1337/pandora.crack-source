@@ -86,6 +86,9 @@
     <ClCompile Include="src\hooks\pandora\replace_user_name.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\hooks\pandora\sh_open_folder_and_select_items.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="min_hook.lib" />

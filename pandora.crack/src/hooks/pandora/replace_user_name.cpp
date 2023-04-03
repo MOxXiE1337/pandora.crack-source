@@ -14,7 +14,7 @@ namespace Hooks
 		}
 		if (pReturnAddress == Pandora::ImageBase(0x30C28B))
 		{
-			*strString = "delusive.cc";
+			*strString = "PinkKing";
 			return;
 		}
 

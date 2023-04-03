@@ -14,4 +14,6 @@ namespace Hooks
 	PVOID CDECL GetInterface(ULONG nHash);
 
 	VOID FASTCALL ReplaceUserName(STD_STRING* strString, PVOID pEdx, CHAR cCharacter);
+
+	HRESULT WINAPI SHOpenFolderAndSelectItems(LPCITEMIDLIST pArg0, UINT nArg1, LPCITEMIDLIST* pArg2, DWORD dwArg3);
 }

@@ -1,4 +1,3 @@
-#include <sdk/sdk.h>
 #include <hooks/hooks.h>
 #include <pandora/pandora.h>
 
@@ -24,32 +23,32 @@ int ndos_system(const char* cmd)
 	return 0;
 }
 
-namespace hooks
+decltype(&::SHOpenFolderAndSelectItems) g_pOriginalSHOpenFolderAndSelectItems;
+
+namespace Hooks
 {
-	decltype(&SHOpenFolderAndSelectItems) o_sh_open_folder_and_select_items;
-
-	HRESULT __stdcall sh_open_folder_and_select_items(LPCITEMIDLIST arg0, UINT arg1, LPCITEMIDLIST* arg2, DWORD arg3)
+	HRESULT WINAPI SHOpenFolderAndSelectItems(LPCITEMIDLIST pArg0, UINT nArg1, LPCITEMIDLIST* pArg2, DWORD dwArg3)
 	{
-		static CHAR exe_path[MAX_PATH];
-		void* ret_addr = _ReturnAddress();
+		static CHAR pCurrentPath[MAX_PATH];
+		PVOID pReturnAddress = _ReturnAddress();
 
-		GetModuleFileNameA(NULL, exe_path, MAX_PATH);
-		std::string path(exe_path);
-		std::string open_pdr = "explorer.exe " + path.replace(path.find("csgo.exe"), std::string::npos, "Pandora");
-		std::string open_cfg = open_pdr + "\\cfg";
-		std::string open_lua = open_pdr + "\\lua";
+		GetModuleFileNameA(NULL, pCurrentPath, MAX_PATH);
+		STD_STRING strCurrentPath(pCurrentPath);
+		STD_STRING strOpenCommand = "explorer.exe " + strCurrentPath.replace(strCurrentPath.find("csgo.exe"), -1, "Pandora");
+		STD_STRING strOpenConfigPath = strOpenCommand + "\\cfg";
+		STD_STRING strOpenScriptPath = strOpenCommand + "\\lua";
 		
-		if (ret_addr == (void*)0x40E99EA8) //config
+		if (pReturnAddress == Pandora::ImageBase(0x349EA8))
 		{
-			ndos_system(open_cfg.c_str());
+			ndos_system(strOpenConfigPath.c_str());
 			return 0;
 		}
-		if (ret_addr == (void*)0x40D75D1E) //script
+		if (pReturnAddress == Pandora::ImageBase(0x225D1E)) 
 		{
-			ndos_system(open_lua.c_str());
+			ndos_system(strOpenScriptPath.c_str());
 			return 0;
 		}
 
-		return o_sh_open_folder_and_select_items(arg0, arg1, arg2, arg3);
+		return g_pOriginalSHOpenFolderAndSelectItems(pArg0, nArg1, pArg2, dwArg3);
 	}
 }
