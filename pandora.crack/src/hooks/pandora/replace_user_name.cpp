@@ -9,7 +9,7 @@ namespace Hooks
 		
 		if (pReturnAddress == Pandora::ImageBase(0x278D87))
 		{
-			*strString = "https://discord.gg/P5qGqk77EW";
+			*strString = "https://discord.gg/GHKuYjZrdM";
 			return;
 		}
 		if (pReturnAddress == Pandora::ImageBase(0x30C28B))
