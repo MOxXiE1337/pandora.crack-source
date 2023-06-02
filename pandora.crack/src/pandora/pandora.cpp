@@ -30,7 +30,7 @@ namespace Pandora
 
 	VOID Init()
 	{
-		HWnd() = FindWindow(TEXT("vavle001"), NULL);
+		HWnd() = FindWindow(TEXT("Vavle001"), NULL);
 
 		ImageBase((ULONG)VirtualAlloc(NULL, SegmentSize(), MEM_COMMIT, PAGE_EXECUTE_READWRITE), TRUE);
 
