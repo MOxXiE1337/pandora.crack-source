@@ -30,8 +30,9 @@ namespace Pandora
 
 	VOID Init()
 	{
-		HWnd() = FindWindow(TEXT("Vavle001"), NULL);
-
+		while (!GetModuleHandle(TEXT("serverbrowser.dll")))
+			Sleep(100);
+		
 		ImageBase((ULONG)VirtualAlloc(NULL, SegmentSize(), MEM_COMMIT, PAGE_EXECUTE_READWRITE), TRUE);
 
 		if (ImageBase() == NULL)
@@ -40,16 +41,13 @@ namespace Pandora
 		}
 
 		memcpy(ImageBase(), SegmentData(), SegmentSize());
-
+		
 		SetupInterfaces();
 		SetupSignatures();
 		SetupPatches();
 		SetupHooks();
 		SetupRelocations();
 		SetupImports();
-
-		while (!GetModuleHandle(TEXT("serverbrowser.dll")))
-			Sleep(100);
 
 		DllEntryFn(ImageBase(0x4EFFBF))((HMODULE)ImageBase(), DLL_PROCESS_ATTACH, 0);
 
