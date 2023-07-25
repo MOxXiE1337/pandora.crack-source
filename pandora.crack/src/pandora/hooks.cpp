@@ -64,7 +64,7 @@ namespace Pandora
 		}
 		if (MH_CreateHook(ImageBase(0x561D50), Hooks::lua_pushlstring, (PVOID*)&g_pOriginal_lua_pushlstring))
 		{
-			MessageBox(HWnd(), TEXT("FAILED TO HOOK pandora.lua_pushstring!"), TEXT(__FUNCTION__), MB_ICONERROR);
+			MessageBox(HWnd(), TEXT("FAILED TO HOOK pandora.lua_pushlstring!"), TEXT(__FUNCTION__), MB_ICONERROR);
 			goto QUIT;
 		}
 		if (MH_EnableHook(NULL))
