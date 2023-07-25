@@ -7,11 +7,10 @@ namespace Hooks
 	VOID FASTCALL ReplaceUserName(STD_STRING* strString, PVOID pEdx, CHAR cCharacter)
 	{
 		PVOID pReturnAddress = _ReturnAddress();
-
-		ISteamFriends* pISteamFriends = SteamAPI::GetISteamFriends();
 		
 		if (pReturnAddress == Pandora::ImageBase(0x278D87) || pReturnAddress == Pandora::ImageBase(0x30C28B))
 		{
+			ISteamFriends* pISteamFriends = SteamAPI::GetISteamFriends();
 			*strString = pISteamFriends->GetPersonName();
 			return;
 		}
