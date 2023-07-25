@@ -1,20 +1,18 @@
 #include <hooks/hooks.h>
 #include <pandora/pandora.h>
+#include <steam_api/steam_api.h>
 
 namespace Hooks
 {
 	VOID FASTCALL ReplaceUserName(STD_STRING* strString, PVOID pEdx, CHAR cCharacter)
 	{
 		PVOID pReturnAddress = _ReturnAddress();
+
+		ISteamFriends* pISteamFriends = SteamAPI::GetISteamFriends();
 		
-		if (pReturnAddress == Pandora::ImageBase(0x278D87))
+		if (pReturnAddress == Pandora::ImageBase(0x278D87) || pReturnAddress == Pandora::ImageBase(0x30C28B))
 		{
-			*strString = "https://discord.gg/GHKuYjZrdM";
-			return;
-		}
-		if (pReturnAddress == Pandora::ImageBase(0x30C28B))
-		{
-			*strString = "PinkKing";
+			*strString = pISteamFriends->GetPersonName();
 			return;
 		}
 

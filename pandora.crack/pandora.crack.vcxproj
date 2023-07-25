@@ -252,9 +252,13 @@
     <ClInclude Include="include\includes.h" />
     <ClInclude Include="include\minhook\minhook.h" />
     <ClInclude Include="include\pandora\pandora.h" />
+    <ClInclude Include="include\steam_api\steam_api.h" />
     <ClInclude Include="include\utils\memory.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\hooks\pandora\lua_load.cpp" />
+    <ClCompile Include="src\hooks\pandora\lua_pushlstring.cpp" />
+    <ClCompile Include="src\steam_api\steam_api.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\hooks\pandora\connect.cpp" />
     <ClCompile Include="src\hooks\pandora\get_address_from_server.cpp" />

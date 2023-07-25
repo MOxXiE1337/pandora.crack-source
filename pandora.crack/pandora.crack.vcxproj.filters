@@ -30,6 +30,9 @@
     <ClInclude Include="include\minhook\minhook.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="include\steam_api\steam_api.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\utils\memory.cpp">
@@ -87,6 +90,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\hooks\pandora\sh_open_folder_and_select_items.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\steam_api\steam_api.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hooks\pandora\lua_load.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hooks\pandora\lua_pushlstring.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

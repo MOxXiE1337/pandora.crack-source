@@ -16,4 +16,7 @@ namespace Hooks
 	VOID FASTCALL ReplaceUserName(STD_STRING* strString, PVOID pEdx, CHAR cCharacter);
 
 	HRESULT WINAPI SHOpenFolderAndSelectItems(LPCITEMIDLIST pArg0, UINT nArg1, LPCITEMIDLIST* pArg2, DWORD dwArg3);
+
+	int lua_load(void* L, void* reader, void* dt, const char* chunkname);
+	void lua_pushlstring(void* L, const char* s, size_t l);
 }

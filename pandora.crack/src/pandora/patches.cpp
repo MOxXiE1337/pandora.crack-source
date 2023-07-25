@@ -1,7 +1,5 @@
 #include <pandora/pandora.h>
 
-STD_STRING g_strUserName = "HelloWorld";
-
 namespace Pandora
 {
 	void SetupPatches()
@@ -28,10 +26,6 @@ namespace Pandora
 		*(BYTE*)ImageBase(0x47C462) = 0x00;
 		*(BYTE*)ImageBase(0x47C47B) = 0x00;
 
-		memset(ImageBase(0x278AE5), 0x90, 6);
-		*(BYTE*)ImageBase(0x278AE5) = 0xB9;
-		*(CONST CHAR**)ImageBase(0x278AE6) = "delusive.cc";
-		
 		// idk why "pandora update detected"
 		// patch MessageBoxA call
 		// memset((void*)0x40FB2500, 0x90, 28);

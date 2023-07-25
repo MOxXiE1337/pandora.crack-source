@@ -1,5 +1,6 @@
 #include <pandora/pandora.h>
 
+typedef PVOID(*SteamInternal_CreateInterfaceFn)(CONST CHAR* pInterfaceName);
 typedef BOOL(__stdcall* DllEntryFn)(HMODULE hinstDLL, DWORD fdwReason, LPVOID lpvReserved);
 
 namespace Pandora
