@@ -260,12 +260,10 @@
     <ClCompile Include="src\hooks\pandora\lua_pushlstring.cpp" />
     <ClCompile Include="src\steam_api\steam_api.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
-    <ClCompile Include="src\hooks\pandora\connect.cpp" />
     <ClCompile Include="src\hooks\pandora\get_address_from_server.cpp" />
     <ClCompile Include="src\hooks\pandora\scan_signature.cpp" />
     <ClCompile Include="src\hooks\pandora\get_interface.cpp" />
     <ClCompile Include="src\hooks\pandora\get_current_process_id.cpp" />
-    <ClCompile Include="src\hooks\pandora\send.cpp" />
     <ClCompile Include="src\hooks\pandora\replace_user_name.cpp" />
     <ClCompile Include="src\hooks\pandora\sh_open_folder_and_select_items.cpp" />
     <ClCompile Include="src\pandora\crash_handler.cpp" />

@@ -10,7 +10,7 @@ namespace Hooks
 	{
 		PVOID pReturnAddress = _ReturnAddress();
 
-		if (pReturnAddress == Pandora::ImageBase(0x5EE80)) // replace username
+		if (pReturnAddress == Pandora::ImageBase(0x5EE80) && !strcmp(s, "legende1337")) // replace username
 		{
 			ISteamFriends* pISteamFriends = SteamAPI::GetISteamFriends();
 	

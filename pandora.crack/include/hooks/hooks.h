@@ -3,9 +3,6 @@
 
 namespace Hooks
 {
-	int __stdcall connect(SOCKET socket, const sockaddr* address, int length);
-	int __stdcall send(SOCKET socket, const char* buffer, int length, int flags);
-
 	DWORD WINAPI GetCurrentProcessId();
 
 	PVOID CDECL ScanSignature(HMODULE hModule, CONST STD_STRING& strSignature, ULONG unk);

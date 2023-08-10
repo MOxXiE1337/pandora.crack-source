@@ -2,8 +2,6 @@
 #include <pandora/pandora.h>
 #include <minhook/minhook.h>
 
-extern decltype(&::connect) g_pOriginalConnect;
-extern decltype(&::send) g_pOriginalSend;
 extern decltype(&::SHOpenFolderAndSelectItems) g_pOriginalSHOpenFolderAndSelectItems;
 extern decltype(&Hooks::lua_load) g_pOriginal_lua_load;
 extern decltype(&Hooks::lua_pushlstring) g_pOriginal_lua_pushlstring;
@@ -15,16 +13,6 @@ namespace Pandora
 		if (MH_Initialize())
 		{
 			MessageBox(HWnd(), TEXT("FAILED TO INITIALIZE MINHOOK!"), TEXT(__FUNCTION__), MB_ICONERROR);
-			goto QUIT;
-		}
-		if (MH_CreateHook(&connect, Hooks::connect, (PVOID*)&g_pOriginalConnect))
-		{
-			MessageBox(HWnd(), TEXT("FAILED TO HOOK wsock32.connect!"), TEXT(__FUNCTION__), MB_ICONERROR);
-			goto QUIT;
-		}
-		if (MH_CreateHook(&send, Hooks::send, (PVOID*)&g_pOriginalSend))
-		{
-			MessageBox(HWnd(), TEXT("FAILED TO HOOK wsock32.send!"), TEXT(__FUNCTION__), MB_ICONERROR);
 			goto QUIT;
 		}
 		if (MH_CreateHook(&GetCurrentProcessId, Hooks::GetCurrentProcessId, NULL))

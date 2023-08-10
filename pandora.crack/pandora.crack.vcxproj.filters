@@ -56,12 +56,6 @@
     <ClCompile Include="src\pandora\patches.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\hooks\pandora\connect.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\hooks\pandora\send.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\hooks\pandora\get_current_process_id.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

@@ -26,10 +26,7 @@ namespace Pandora
 		*(BYTE*)ImageBase(0x47C462) = 0x00;
 		*(BYTE*)ImageBase(0x47C47B) = 0x00;
 
-		// idk why "pandora update detected"
-		// patch MessageBoxA call
-		// memset((void*)0x40FB2500, 0x90, 28);
-		// patch exit call 
-		// memset((void*)0x40FB2767, 0x90, 10);
+		// patch update detecting thread, thx Geniuni
+		*(BYTE*)ImageBase(0x517620) = 0xC3;
 	}
 }
